@@ -33,8 +33,6 @@ The output of the CNN is then post-processed to deliver a generated onset detect
 
 ![Detection function](images/detection_function.png)
 
-*Our generated onset detection function along with the groundtruth*
-
 The output shows a correct identification of the onsets that play along with the audio file.
 
 
