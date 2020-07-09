@@ -11,18 +11,18 @@ For evaluating, several learned models are included in the ```learned_models``` 
 
 The spectrograms of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution.
 
-![Spectrograms](images/input_spectrograms.png)
-*Input spectrograms: from top to bottom: at 23ms, 46ms and 96ms time resolution*
+->![Spectrograms](images/input_spectrograms.png)<-
+->*Input spectrograms: from top to bottom: at 23ms, 46ms and 96ms time resolution*<-
 
 Then the spectrograms are filtered using a mel-spaced frequency filter bank of 80 filters.
 
-![Mel spectra](images/melfilter_representation.png)
-*Mel spectrogram with 80 filters for generating the input to the CNN*
+->![Mel spectra](images/melfilter_representation.png)<-
+->*Mel spectrogram with 80 filters for generating the input to the CNN*<-
 
 This gives a reduced input for the CNN. For visualization purposes, the RGB input of the concatenated mel-spectra would look to the human eye like this:
 
-![CNN Input](images/cnn_input.png)
-*What the human eye would see if the represenation was an image*
+->![CNN Input](images/cnn_input.png)<-
+->*What the human eye would see if the represenation was an image*<-
 
 However, the CNN will look for relationships between the three available channels (modes) in the input space, thus finding relationships in between the channels in both time and frequency.
 
@@ -30,8 +30,9 @@ However, the CNN will look for relationships between the three available channel
 The model that is used in the example is a 10-layer convolutional network with different filter sizes and a rectifying linear unit attached at the end of each convolutional layer. The label which was applied for training is an _onset detection function_.
 
 The output of the CNN is then post-processed to deliver a generated onset detection function, which is shown below.
-![Detection function](images/detection_function.png)
-*Our generated onset detection function along with the groundtruth*
+
+->![Detection function](images/detection_function.png)<-
+->*Our generated onset detection function along with the groundtruth*<-
 
 The output shows a correct identification of the onsets that play along with the audio file.
 
