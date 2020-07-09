@@ -3,21 +3,24 @@ This repository contains a MATLAB example for Onset Detection using a Convolutio
 
 ### Training and Testing Databases
 For use, please download the training and testing databases and install them in a folder in your local PC.
-* Training: Leveus Onset Database (available [here]())
-* Testing: Prosemus Onset Database (available [here]())
+* Training: Leveau Onset Database (available [here](http://www.tsi.telecom-paristech.fr/aao/en/2011/07/13/onset_leveau-a-database-for-onset-detection/))
+* Testing: Prosemus Onset Database (available [here](http://first.hansanet.ee/~istchoruso/wiki/index.php/Onset_Detection_Database))
 
 ## Evaluation
-For evaluating, several learned models are included in the learned_models folder. To have a look, run ```onset_test.m```
+For evaluating, several learned models are included in the ```learned_models``` folder. To have a look, run ```onset_test.m```
 
-The spectrogram of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution.
+The spectrograms of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution.
+
 ![Spectrograms](images/input_spectrograms.png)
 *Input spectrograms: from top to bottom: at 23ms, 46ms and 96ms time resolution*
 
 Then the spectrograms are filtered using a mel-spaced frequency filter bank of 80 filters.
+
 ![Mel spectra](images/melfilter_representation.png)
 *Mel spectrogram with 80 filters for generating the input to the CNN*
 
 This gives a reduced input for the CNN. For visualization purposes, the RGB input of the concatenated mel-spectra would look to the human eye like this:
+
 ![CNN Input](images/cnn_input.png)
 *What the human eye would see if the represenation was an image*
 
