@@ -11,16 +11,18 @@ For evaluating, several learned models are included in the ```learned_models``` 
 
 ### Input spectrograms ###
 The spectrograms of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution. In the following image, the spectrograms are shown from top to bottom: at 23ms, 46ms and 96ms time resolution
+
 ![Spectrograms](images/input_spectrograms.png)
 
 ### Dimensionality reduction ###
 Then the spectrograms are filtered using a mel-spaced frequency filter bank of 80 filters.
+
 ![Mel spectra](images/melfilter_representation.png)
 
 This gives a reduced input for the CNN. 
 
 For visualization purposes, the RGB input of the concatenated mel-spectra would look to the human eye like this:
-![CNN Input](images/cnn_input.png|width = 100)
+![CNN Input](images/cnn_input.png){:height="50%" width="50%"}
 
 However, the CNN will look for relationships between the three available channels (modes) in the input space, thus finding relationships in between the channels in both time and frequency.
 
