@@ -22,7 +22,7 @@ Then the spectrograms are filtered using a mel-spaced frequency filter bank of 8
 This gives a reduced input for the CNN. 
 
 For visualization purposes, the RGB input of the concatenated mel-spectra would look to the human eye like this:
-![CNN Input](images/cnn_input.png){:height="50%" width="50%"}
+![CNN Input](images/cnn_input.png)
 
 However, the CNN will look for relationships between the three available channels (modes) in the input space, thus finding relationships in between the channels in both time and frequency.
 
