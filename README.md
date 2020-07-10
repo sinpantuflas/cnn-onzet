@@ -22,10 +22,10 @@ The spectrograms are then filtered using a mel-spaced frequency filter bank of 8
 This gives an input for the CNN which is comprised of three channels, each of which describes a different temporal resolution, but with the same frequency components. A possible depiction would contain thus the same number of frequency bands, but smeared in the time domain. This effect is represented in the next picture, which shows an RGB representation of such an input.
 ![CNN Input](images/cnn_input.png)
 
-However, the CNN will look for the relationships and differences in the input space, finding relationships in the channels of both time and frequency characteristics.
+However, the CNN will look for the relationships and differences in the input space, finding relationships in both time and frequency.
 
 ### Trained model
-The model that is used in the example is a 10-layer convolutional network with different filter sizes and a rectifying linear unit attached at the end of each convolutional layer. The label which was applied for training is an _onset detection function_.
+The model that is used in the example is a 10-layer convolutional network with different filter sizes and a rectifying units attached at the end of each convolutional layer. The label which was applied for training is an _onset detection function_.
 
 The output of the CNN is then post-processed to deliver a generated onset detection function, which is shown below.
 
