@@ -49,4 +49,7 @@ The output shows a correct identification of the onsets which play along with th
 A training script is included in ```onset_train.m```. Optionally, there is the option to use the mel-filtered spectral flux, which exploits the relationships between subsequent time bins in the spectrogram.
 
 ### References
+This implementation is based on:
+[1]. Jan Schlüter and Sebastian Böck. "Improved Musical Onset Detection with Convolutional Neural Networks." 2014 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2014.
+
 For more information on matconvnet visit its [official repository](https://github.com/vlfeat/matconvnet)
