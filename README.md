@@ -9,30 +9,27 @@ For use, please download the training and testing databases and install them in 
 ## Evaluation
 For evaluating, several learned models are included in the ```learned_models``` folder. To have a look, run ```onset_test.m```
 
-The spectrograms of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution.
+### Input spectrograms ###
+The spectrograms of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution. In the following image.
 
-->![Spectrograms](images/input_spectrograms.png)<-
-->*Input spectrograms: from top to bottom: at 23ms, 46ms and 96ms time resolution*<-
+![Spectrograms](images/input_spectrograms.png)
 
-Then the spectrograms are filtered using a mel-spaced frequency filter bank of 80 filters.
+### Dimensionality reduction ###
+The spectrograms are then filtered using a mel-spaced frequency filter bank of 80 filters, so to reduce redundancy at the time of learning.
 
-->![Mel spectra](images/melfilter_representation.png)<-
-->*Mel spectrogram with 80 filters for generating the input to the CNN*<-
+![Mel spectra](images/melfilter_representation.png)
 
-This gives a reduced input for the CNN. For visualization purposes, the RGB input of the concatenated mel-spectra would look to the human eye like this:
+This gives an input for the CNN which is comprised of three channels, each of which describes a different temporal resolution, but with the same frequency components. A possible depiction would contain thus the same number of frequency bands, but smeared in the time domain. This effect is represented in the next picture, which shows an RGB representation of such an input.
+![CNN Input](images/cnn_input.png)
 
-->![CNN Input](images/cnn_input.png)<-
-->*What the human eye would see if the represenation was an image*<-
-
-However, the CNN will look for relationships between the three available channels (modes) in the input space, thus finding relationships in between the channels in both time and frequency.
+However, the CNN will look for the relationships and differences in the input space, finding relationships in both time and frequency.
 
 ### Trained model
-The model that is used in the example is a 10-layer convolutional network with different filter sizes and a rectifying linear unit attached at the end of each convolutional layer. The label which was applied for training is an _onset detection function_.
+The model that is used in the example is a 10-layer convolutional network with different filter sizes and a rectifying units attached at the end of each convolutional layer. The label which was applied for training is an _onset detection function_.
 
 The output of the CNN is then post-processed to deliver a generated onset detection function, which is shown below.
 
-->![Detection function](images/detection_function.png)<-
-->*Our generated onset detection function along with the groundtruth*<-
+![Detection function](images/detection_function.png)
 
 The output shows a correct identification of the onsets that play along with the audio file.
 
@@ -41,5 +38,4 @@ The output shows a correct identification of the onsets that play along with the
 A training script is included in ```onset_train.m```. Optionally, there is the option to use the mel-filtered spectral flux, which exploits the relationships between subsequent time bins in the spectrogram.
 
 ### References
-For more information on matconvnet visit its [official repository](http://github.com/)
-
+For more information on matconvnet visit its [official repository](https://github.com/vlfeat/matconvnet)
