@@ -7,7 +7,7 @@ function onset_test
 % Author: C. de Obaldia.
 
 % Set path to DB
-pathToDB = '/media/carlos/INTENSO/obaldia/Proyectos/Sounds/Prosemus-Onset/';
+pathToDB = 'path/To/Prosemus-Onset/';
 
 % Setup matconvnet and compile MEX files. If GPU support is available, set
 % opts.useGPU in matconvnet_dist/setup.m to true.
