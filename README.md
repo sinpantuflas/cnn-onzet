@@ -1,5 +1,5 @@
 # Onzet: A Custom CNN for Onset Detection
-This repository contains a MATLAB example for Onset Detection using a Convolutional Neural Network (CNN). The repository contains a matconvnet distribution for training/evaluation. 
+This repository contains a MATLAB example for Onset Detection using a Convolutional Neural Network (CNN). The repository contains a matconvnet distribution for training/evaluation.
 
 ### Training and Testing Databases
 For use, please download the training and testing databases and install them in a folder in your local PC.
@@ -10,17 +10,26 @@ For use, please download the training and testing databases and install them in 
 For evaluating, several learned models are included in the ```learned_models``` folder. To have a look, run ```onset_test.m```
 
 ### Input spectrograms ###
-The spectrograms of the audio files are first extracted at different time resolutions; 23ms, 46ms and 93ms. The number of frequency bins is, in this part, 4096 for a high frequency resolution. In the following image.
+The spectrograms of the audio files are first extracted at different time resolutions.
 
-![Spectrograms](images/input_spectrograms.png)
+|<img src="images/input_spectrograms.png" alt="Spectrograms" width="400px"/>|
+|:--:|
+| <sub> *Input spectrograms. From top to bottom: with 23ms, 46ms and 93ms time resolution.* </sub>|
+
 
 ### Dimensionality reduction ###
 The spectrograms are then filtered using a mel-spaced frequency filter bank of 80 filters, so to reduce redundancy at the time of learning.
 
-![Mel spectra](images/melfilter_representation.png)
+|<img src="images/melfilter_representation.png" alt="Mel spectra" width="400px"/>|
+|:--:|
+| <sub> *Mel-filtered Spectrum.*  </sub>|
 
-This gives an input for the CNN which is comprised of three channels, each of which describes a different temporal resolution, but with the same frequency components. A possible depiction would contain thus the same number of frequency bands, but smeared in the time domain. This effect is represented in the next picture, which shows an RGB representation of such an input.
-![CNN Input](images/cnn_input.png)
+
+This gives an input for the CNN which is comprised of three channels, each of which describes a different temporal resolution, but describing the same frequency components. A possible depiction would contain the same number of frequency bands, but smeared in the time domain. This effect is represented in the next picture, which shows an RGB representation of such an input.
+
+|<img src="images/cnn_input.png" alt="CNN Input" width="400px"/>|
+|:--:|
+| <sub> *An RGB representation of the input for the network.* </sub>|
 
 However, the CNN will look for the relationships and differences in the input space, finding relationships in both time and frequency.
 
@@ -29,9 +38,11 @@ The model that is used in the example is a 10-layer convolutional network with d
 
 The output of the CNN is then post-processed to deliver a generated onset detection function, which is shown below.
 
-![Detection function](images/detection_function.png)
+|<img src="images/detection_function.png" alt="Detection function" width="400px"/>|
+|:--:|
+| <sub> *Generated onset detection function and its ground truth.* </sub>|
 
-The output shows a correct identification of the onsets that play along with the audio file.
+The output shows a correct identification of the onsets which play along with the audio file.
 
 
 ### Training

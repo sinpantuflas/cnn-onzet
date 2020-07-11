@@ -6,6 +6,9 @@ function onset_train()
 cleanDir = 'path/To/Leveau-Onset/Leveau/sounds/';
 labelDir = 'path/To/Leveau-Onset/Leveau/labelsPL/';
 
+% Setup matconvnet and compile MEX files. If GPU support is available, set
+% opts.useGPU in matconvnet_dist/setup.m to true.
+run matconvnet_dist/setup;
 
 try
     load('audio_database.m');
@@ -64,14 +67,19 @@ function [ims lbs]= makedata(currDirName, currLabelDir)
 trailing = 1;
 
 currDir = dir(currDirName);
-list=dir(currLabelDir); lists=cell(1); n000=0;
+list=dir(currLabelDir); 
+lists=cell(1); %For saving file identifiers
+n000=0; %Counter
 for n00=1:size(list,1),
     if ~list(n00).isdir,
         n000=n000+1;
         lists{n000}=list(n00).name(1:end-4);
     end
 end
-ims = cell(1); n2=1; nn=1; lbs = cell(1);
+
+ims = cell(1); 
+n2=1; nn=1; 
+lbs = cell(1);
 for n0 = 1:size(currDir,1),
     im = [];
     lb = [];

@@ -13,17 +13,6 @@ pathToDB = 'path/To/Prosemus-Onset/';
 % opts.useGPU in matconvnet_dist/setup.m to true.
 run matconvnet_dist/setup;
 
-
-inDir = pwd;
-if ~strcmp(inDir(end-4:end),'onzet'),
-    if strcmp(inDir(end-2:end),'one'),
-        cd(strcat(pwd,'/cnn_onzet/'));
-    end
-else
-    disp('Please change your path..');
-end
-addpath('../');
-
 testDir = strcat(pathToDB,'audio/');
 lablDir = strcat(pathToDB,'ground_truth/');
 
@@ -107,13 +96,13 @@ if plotit,
     ax4=subplot(3,1,1);
     title('Mel-filtered spectra');
     imagesc(tp1,1:80,abs(z1));
-    axis xy; xlabel('t \rightarrow'); ylabel('Mel bins');
+    axis xy; xlabel('t (s) \rightarrow'); ylabel('Mel bins');
     ax5=subplot(3,1,2);
     imagesc(tp1,1:80,abs(z2));
-    axis xy; xlabel('t \rightarrow'); ylabel('Mel bins');
+    axis xy; xlabel('t (s) \rightarrow'); ylabel('Mel bins');
     ax6=subplot(3,1,3);
     imagesc(tp1,1:80,abs(z3));
-    axis xy; xlabel('t \rightarrow'); ylabel('Mel bins');
+    axis xy; xlabel('t (s) \rightarrow'); ylabel('Mel bins');
     linkaxes([ax1,ax2,ax3,ax4,ax5,ax6],'x');
 end
 
