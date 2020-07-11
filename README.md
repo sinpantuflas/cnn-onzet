@@ -20,6 +20,7 @@ The spectrograms are then filtered using a mel-spaced frequency filter bank of 8
 ![Mel spectra](images/melfilter_representation.png)
 
 This gives an input for the CNN which is comprised of three channels, each of which describes a different temporal resolution, but with the same frequency components. A possible depiction would contain thus the same number of frequency bands, but smeared in the time domain. This effect is represented in the next picture, which shows an RGB representation of such an input.
+
 ![CNN Input](images/cnn_input.png)
 
 However, the CNN will look for the relationships and differences in the input space, finding relationships in both time and frequency.
@@ -38,4 +39,7 @@ The output shows a correct identification of the onsets that play along with the
 A training script is included in ```onset_train.m```. Optionally, there is the option to use the mel-filtered spectral flux, which exploits the relationships between subsequent time bins in the spectrogram.
 
 ### References
+This implementation is based on:
+[1]. Jan, and Sebastian Böck. "Improved Musical Onset Detection with Convolutional Neural Networks." 2014 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2014.
+
 For more information on matconvnet visit its [official repository](https://github.com/vlfeat/matconvnet)
