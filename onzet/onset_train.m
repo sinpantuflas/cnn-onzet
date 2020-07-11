@@ -1,15 +1,19 @@
-function onzet_train()
-% First step is to read the wavefiles and generate a imdb
+function onset_train()
+% Training script. It loads raw audio files, process them and arranges them
+% in a structure wihch is then fed to a CNN for training. The trained model
+% is then saved. Run ONSET_TEST for evaluation
 
-%If first time
-reload=1;
-if reload,
-    
-    cleanDir = '/home/obaldia/Proyectos/Sounds/Leveau-Onset/Leveau/sounds/';
-    labelDir = '/home/obaldia/Proyectos/Sounds/Leveau-Onset/Leveau/labelsPL/';
+cleanDir = 'path/To/Leveau-Onset/Leveau/sounds/';
+labelDir = 'path/To/Leveau-Onset/Leveau/labelsPL/';
+
+
+try
+    load('audio_database.m');
+catch
+    %Extract input data and labels
     [im1 lb1] = makedata(cleanDir, labelDir);
     
-    % Data are 3 spectrograms at different window sizes
+    %Input data is composed of spectrograms at different time resolutions
     imdb.images.data = []; n00=1; imdb.images.label = [];
     for n0=1:size(im1,2),
         tmpcell = im1{n0};
@@ -25,37 +29,31 @@ if reload,
     
     valset = randi(length(imdb.images.label),1,floor(length(imdb.images.label).*.20));
     imdb.images.set(valset)=2;
-    save('onzet_specs_v3.mat','imdb');
-else
-    load('onzet_specs_v3.mat');
+    save('audio_database.m','imdb');
 end
 
-
-
-%netDir = 'weightsandbiases/';c
-%thisNet = 'net-epoch-260_denoise2.mat';
-thisNet = initializeOnset(0);
-thisNet = vl_simplenn_tidy(thisNet);
-vl_simplenn_display(thisNet)
+thisNet = initializeOnset(0); %Define network architecture.
+thisNet = vl_simplenn_tidy(thisNet); %Make sure is in the appropiate format
+vl_simplenn_display(thisNet) %Show network
 
 
 tic
+%% Training and options
 trainOpts.batchSize = 250;
 trainOpts.numEpochs = 200;
 trainOpts.continue = true ;
 %trainOpts.residualnet = 1;
 %trainOpts.useGpu = true ;
-lr=0.05; %changed from 0.5 22.04 %0.0007 and 2.0004
-for n=1:(trainOpts.numEpochs-1),
-    lr=[lr lr(end)/1.00004];
-end
 
-%net.layers(end)=[];
+lr=0.05; %The learning rate
+for n=1:(trainOpts.numEpochs-1)
+    lr=[lr lr(end)/1.00004]; %Reduce learning rate after each epoch
+end
 
 [net,info] = cnn_train_normal(thisNet, imdb, @getBatch, trainOpts);
 
 disp('Saving the net'); timeStamp = datestr(now,'mm-dd-HH-MM');
-save(strcat('data/net-onzet-',timeStamp,'.mat'), '-struct', 'net') ;
+save(strcat('learned_models/net-onzet-',timeStamp,'.mat'), '-struct', 'net') ;
 
 
 end
