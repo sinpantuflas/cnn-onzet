@@ -1,4 +1,4 @@
-# Onzet: A Custom CNN for Onset Detection
+# nA Custom CNN for Onset Detection
 This repository contains a MATLAB example for Onset Detection using a Convolutional Neural Network (CNN). The repository contains a matconvnet distribution for training/evaluation.
 
 ### Training and Testing Databases
